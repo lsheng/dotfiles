@@ -20,6 +20,9 @@
 [diff]
   noprefix = true
 
+[push]
+  default = simple
+
 # Include a .gituser file that contains git user information.
 [include]
   path=~/.gituser

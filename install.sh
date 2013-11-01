@@ -26,4 +26,14 @@ if [ ! -f ~/.gitignore_global ]; then
   ln -s ${PWD}/gitignore_global ~/.gitignore_global
 fi
 
+if [ ! -d ~/.oh-my-zsh ]; then
+  echo Installing oh-my-zsh
+  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+fi
+
+if [ ! -f ~/.zshrc ]; then
+  echo Symlinking .zshrc
+  ln -s ${PWD}/zshrc ~/.zshrc
+fi
+
 echo Done!
