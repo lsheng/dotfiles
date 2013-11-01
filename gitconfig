@@ -1,0 +1,21 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	dm = diff master --name-only
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+  grep = auto
+
+[core]
+	excludesfile = /home/lsheng/.gitignore_global
+  editor = vim
+
+[diff]
+	noprefix = true

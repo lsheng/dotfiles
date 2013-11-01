@@ -1,0 +1,10 @@
+/.idea
+partitions_*
+.partitions_*
+/site
+/target
+*/target
+*lib
+log
+out
+*.iml

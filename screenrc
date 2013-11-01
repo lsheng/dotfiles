@@ -1,0 +1,12 @@
+#Don't display the startup message
+startup_message off
+
+#Sweet nethack bindings
+nethack on
+bind 0 select 10
+
+# Don't actually use the alternate scroll window
+termcapinfo xterm|xterms|xs ti@:te=\E[2J
+
+caption    splitonly "%{+b rk}%H%{gk} |%c %{yk}%d.%m.%Y | %72=Load: %l %{wk}"
+hardstatus alwayslastline "%?%{yk}%-Lw%?%{wb}%n*%f %t%?(%u)%?%?%{yk}%+Lw%?"
