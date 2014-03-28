@@ -28,7 +28,11 @@ fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
   echo Installing oh-my-zsh
-  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+  if which curl > /dev/null; then
+    curl -L http://install.ohmyz.sh | sh
+  elif which wget > /dev/null; then
+    wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+  fi
 fi
 
 if [ ! -f ~/.zshrc ]; then
