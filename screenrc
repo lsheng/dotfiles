@@ -1,7 +1,10 @@
-#Don't display the startup message
+# Don't display the startup message
 startup_message off
 
-#Sweet nethack bindings
+# Set the scrollback to 10k lines
+defscrollback 10000
+
+# Sweet nethack bindings
 nethack on
 bind 0 select 10
 
