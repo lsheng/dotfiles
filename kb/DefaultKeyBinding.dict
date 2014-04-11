@@ -1,0 +1,18 @@
+/* Put this file in ~/Library/Keybindings/DefaultKeyBinding.dict */
+{
+  /* Remap (Home|End) to jump to the begin/end of the line */
+  "\UF729" = "moveToBeginningOfLine:"; /* Home */
+  "\UF72B" = "moveToEndOfLine:"; /* End */
+
+  /* Remap Shift-(Home|End) to select while jumping */
+  "$\UF729" = "moveToBeginningOfLineAndModifySelection:"; /* Shift + Home */
+  "$\UF72B" = "moveToEndOfLineAndModifySelection:"; /* Shift + End */
+
+  /* Remap Ctrl-(Home|End) to jump to the begin/end of the document */
+  "^\UF729" = "moveToBeginningOfDocument:"; /* Ctrl + Home */
+  "^\UF72B" = "moveToEndOfDocument:"; /* Ctrl + End */
+
+  /* Remap Shift-Ctrl-(Home|End) to select while jumping docwide */
+  "$^\UF729" = "moveToBeginningOfDocumentAndModifySelection:"; /* Shift + Ctrl + Home */
+  "$^\UF72B" = "moveToEndOfDocumentAndModifySelection:"; /* Shift + Ctrl + End */
+}

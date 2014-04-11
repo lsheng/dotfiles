@@ -40,4 +40,16 @@ if [ ! -f ~/.zshrc ]; then
   ln -s ${PWD}/zshrc ~/.zshrc
 fi
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # Linux special steps
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # OSX special steps
+
+  # Fix OSX's Default Home/End keybindings
+  ln -s ${PWD}/kb/DefaultKeyBinding.dict ~/Library/KeyBindings
+
+else
+  echo Unknown OSTYPE ${OSTYPE}
+fi
+
 echo Done!
