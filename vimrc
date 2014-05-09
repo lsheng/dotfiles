@@ -40,3 +40,7 @@ set softtabstop=2
 
 set background=dark
 colorscheme solarized
+
+" vimmarkdown
+let g:vim_markdown_folding_disabled=1
+
