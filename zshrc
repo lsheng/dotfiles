@@ -75,14 +75,11 @@ export HADOOP_OPTS="-Djava.security.krb5.realm= -Djava.security.krb5.kdc="
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 export PATH=$PATH:~/github/devtools/bin/
 
 # Tab complete known hosts
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
-alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
 
 # Super secret git empty repo hash
 export GIT_EMPTY_REPO_HASH=$(git hash-object -t tree /dev/null) # "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
@@ -92,5 +89,7 @@ if [[ $OSTYPE == darwin* ]]; then
   export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 fi
 
+alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
 alias mvn='~/bin/mvn'
+alias sd='screen -dRUS dev' 
 
