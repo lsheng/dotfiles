@@ -50,9 +50,9 @@ if [ ! -d ~/.vim ]; then
   ln -s ${PWD}/vim ~/.vim
 fi
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ $OSTYPE == linux-gnu* ]]; then
   # Linux special steps
-elif [[ "$OSTYPE" == "darwin" ]]; then
+elif [[ $OSTYPE == darwin* ]]; then
   # OSX special steps
 
   # Fix OSX's Default Home/End keybindings

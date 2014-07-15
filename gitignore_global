@@ -9,3 +9,4 @@ log
 out
 *.iml
 __pycache__
+plugins/kiji/
