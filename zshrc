@@ -54,30 +54,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# Keep Maven from running out of memory when building Kiji.
-export MAVEN_OPTS="-XX:MaxPermSize=1024m -Xmx1024m"
-
-# Remove "Unable to load realm info from SCDynamicStore” error messages when building Kiji.
-export HADOOP_OPTS="-Djava.security.krb5.realm= -Djava.security.krb5.kdc="
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-export PATH=$PATH:~/github/devtools/bin/
-
 # Tab complete known hosts
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
@@ -91,7 +67,21 @@ if [[ $OSTYPE == darwin* ]]; then
   alias chrome="open -a '/Applications/Google Chrome.app'"
 fi
 
+# Command aliases
 alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
 alias mvn='~/bin/mvn'
 alias sd='screen -dRUS dev' 
 
+# Kiji Development Configuration
+
+# Keep Maven from running out of memory when building Kiji.
+export MAVEN_OPTS="-XX:MaxPermSize=1024m -Xmx1024m"
+
+# Remove "Unable to load realm info from SCDynamicStore” error messages when building Kiji.
+export HADOOP_OPTS="-Djava.security.krb5.realm= -Djava.security.krb5.kdc="
+
+# Run Kiji Bento in headless mode
+export BENTO_JAVA_OPTS="${BENTO_JAVA_OPTS} -Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx3g -Xms3g"
+
+# Include Kiji developer tools on the path.
+export PATH=$PATH:~/github/devtools/bin/
