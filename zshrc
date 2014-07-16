@@ -84,9 +84,11 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 # Super secret git empty repo hash
 export GIT_EMPTY_REPO_HASH=$(git hash-object -t tree /dev/null) # "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
 
-# OSX specific environment variables
+# OSX specific configuration
 if [[ $OSTYPE == darwin* ]]; then
   export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+
+  alias chrome="open -a '/Applications/Google Chrome.app'"
 fi
 
 alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
