@@ -9,7 +9,8 @@ filetype plugin indent on
  
 syntax on
 set number
-set mouse=a
+set mouse=a             " hold shift to copy xterm
+set ttymouse=xterm2     " necessary for gnu screen & mouse
 set mousehide
 set paste
 
