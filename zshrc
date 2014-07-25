@@ -62,10 +62,13 @@ export GIT_EMPTY_REPO_HASH=$(git hash-object -t tree /dev/null) # "4b825dc642cb6
 
 # OSX specific configuration
 if [[ $OSTYPE == darwin* ]]; then
-  export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home
   alias chrome="open -a '/Applications/Google Chrome.app'"
 fi
+
+# Shell key bindings
+bindkey '^w' forward-word
+bindkey '^b' backward-word
 
 # Command aliases
 alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
