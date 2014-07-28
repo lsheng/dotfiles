@@ -10,3 +10,5 @@ out
 *.iml
 __pycache__
 plugins/kiji/
+private-properties.json
+work_dir.*
