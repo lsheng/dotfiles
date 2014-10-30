@@ -279,7 +279,6 @@ brew cleanup
 
 brew install caskroom/cask/brew-cask
 apps=(
-  caffeine
   dropbox
   google-chrome
   iterm2
