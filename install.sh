@@ -50,13 +50,19 @@ if [ ! -d ~/.vim ]; then
   ln -s ${PWD}/vim ~/.vim
 fi
 
-if [[ $OSTYPE == linux-gnu* ]]; then
+if [[ $OSTYPE == linux-gnu* ]] ; then
   # Linux special steps
-elif [[ $OSTYPE == darwin* ]]; then
+  echo "Linux Customizations"
+
+elif [[ $OSTYPE == darwin* ]] ; then
   # OSX special steps
+  echo "OSX Customizations"
 
   # Fix OSX's Default Home/End keybindings
   ln -s ${PWD}/kb/DefaultKeyBinding.dict ~/Library/KeyBindings
+
+  # Source the OSX setup script
+  source os/osx.sh
 
 else
   echo Unknown OSTYPE ${OSTYPE}

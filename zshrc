@@ -64,6 +64,7 @@ export GIT_EMPTY_REPO_HASH=$(git hash-object -t tree /dev/null) # "4b825dc642cb6
 if [[ $OSTYPE == darwin* ]]; then
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_65.jdk/Contents/Home
   alias chrome="open -a '/Applications/Google Chrome.app'"
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
 fi
 
 # Shell key bindings

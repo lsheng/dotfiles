@@ -7,7 +7,12 @@
 # Some things taken from here
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
+# Bash strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
 # Ask for the administrator password upfront
+echo "Asking for the administrator password preemptively"
 sudo -v
 
 echo "This script will make your Mac awesome"
@@ -17,18 +22,13 @@ echo "This script will make your Mac awesome"
 ###############################################################################
 
 echo ""
-echo "Hide the Time Machine, Volume, User, and Bluetooth icons"
+echo "Hide the Time Machine and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
   defaults write "${domain}" dontAutoLoad -array \
-    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
-    "/System/Library/CoreServices/Menu Extras/User.menu"
+    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
 done
 defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-  "/System/Library/CoreServices/Menu Extras/Clock.menu"
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
 
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
@@ -59,10 +59,6 @@ echo "Displaying ASCII control characters using caret notation in standard text 
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
 echo ""
-echo "Disabling system-wide resume"
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
-
-echo ""
 echo "Disabling automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
@@ -73,14 +69,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 echo ""
 echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
-echo ""
-echo "Never go into computer sleep mode"
-systemsetup -setcomputersleep Off > /dev/null
-
-echo ""
-echo "Check for software updates daily, not just once per week"
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 echo ""
 echo "Disable smart quotes and smart dashes as theyâ€™re annoying when typing code"
@@ -166,9 +154,9 @@ echo ""
 echo "Disabling the warning when changing a file extension"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-echo ""
-echo "Use column view in all Finder windows by default"
-defaults write com.apple.finder FXPreferredViewStyle Clmv
+#echo ""
+#echo "Use column view in all Finder windows by default"
+#defaults write com.apple.finder FXPreferredViewStyle Clmv
 
 echo ""
 echo "Avoiding the creation of .DS_Store files on network volumes"
@@ -183,7 +171,6 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 echo ""
 echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 
@@ -192,7 +179,7 @@ echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 ###############################################################################
 
 # Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you donâ€™t use
+# This is only really useful when setting up a new Mac, or if you don't use
 # the Dock to launch apps.
 #defaults write com.apple.dock persistent-apps -array
 
@@ -211,58 +198,13 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0
 
-
-###############################################################################
-# Safari & WebKit
-###############################################################################
+echo ""
+echo "Moving Dock to the left"
+defaults write com.apple.dock orientation left
 
 echo ""
-echo "Hiding Safariâ€™s bookmarks bar by default"
-defaults write com.apple.Safari ShowFavoritesBar -bool false
-
-echo ""
-echo "Hiding Safariâ€™s sidebar in Top Sites"
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
-
-echo ""
-echo "Disabling Safariâ€™s thumbnail cache for History and Top Sites"
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
-
-echo ""
-echo "Enabling Safariâ€™s debug menu"
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-echo ""
-echo "Making Safariâ€™s search banners default to Contains instead of Starts With"
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-
-echo ""
-echo "Removing useless icons from Safariâ€™s bookmarks bar"
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
-echo ""
-echo "Allow hitting the Backspace key to go to the previous page in history"
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
-
-echo ""
-echo "Enabling the Develop menu and the Web Inspector in Safari"
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
-
-echo ""
-echo "Adding a context menu item for showing the Web Inspector in web views"
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-
-###############################################################################
-# Mail
-###############################################################################
-
-echo ""
-echo "Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app"
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
+echo "Restarting Dock"
+killall Dock
 
 ###############################################################################
 # Terminal
@@ -273,7 +215,6 @@ echo "Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default"
 defaults write com.apple.terminal StringEncodings -array 4
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
-
 
 ###############################################################################
 # Time Machine
@@ -287,41 +228,12 @@ echo ""
 echo "Disabling local Time Machine backups"
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
-
-###############################################################################
-# Messages                                                                    #
-###############################################################################
-
-echo ""
-echo "Disable automatic emoji substitution (i.e. use plain text smileys)"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
-
-echo ""
-echo "Disable smart quotes as itâ€™s annoying for messages that contain code"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-
-echo ""
-echo "Disable continuous spell checking"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
-
 ###############################################################################
 # Personal Additions
 ###############################################################################
 
 echo ""
-echo "Disable hibernation (speeds up entering sleep mode)"
-sudo pmset -a hibernatemode 0
-
-echo ""
-echo "Remove the sleep image file to save disk space"
-sudo rm /Private/var/vm/sleepimage
-echo "Creating a zero-byte file insteadâ€¦"
-sudo touch /Private/var/vm/sleepimage
-echo "â€¦and make sure it canâ€™t be rewritten"
-sudo chflags uchg /Private/var/vm/sleepimage
-
-echo ""
-echo "Disable the sudden motion sensor as itâ€™s not useful for SSDs"
+echo "Disable the sudden motion sensor as itâ's not useful for SSDs"
 sudo pmset -a sms 0
 
 echo ""
@@ -329,17 +241,55 @@ echo "Speeding up wake from sleep to 24 hours from an hour"
 # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
 sudo pmset -a standbydelay 86400
 
-echo ""
-echo "Disable computer sleep and stop the display from shutting off"
-sudo pmset -a sleep 0
-sudo pmset -a displaysleep 0
-
-echo ""
-echo "Disable annoying backswipe in Chrome"
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-
 ###############################################################################
-# Kill affected applications
+# Homebrew
 ###############################################################################
 
-echo "Done!"
+export PATH=$PATH:/usr/local/bin
+
+# Check for Homebrew,
+# Install if we don't have it
+if test ! $(which brew); then
+  echo "Installing homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# Update homebrew recipes
+brew update
+
+# Install GNU core utilities (those that come with OS X are outdated)
+brew install coreutils
+
+# Install zsh
+brew install zsh 
+
+binaries=(
+  python3
+  git
+  vim
+  mtr
+)
+
+echo "installing binaries..."
+brew install ${binaries[@]}
+
+brew cleanup
+
+###############################################################################
+# Cask and apps
+###############################################################################
+
+brew install caskroom/cask/brew-cask
+apps=(
+  caffeine
+  dropbox
+  google-chrome
+  iterm2
+  vlc
+#  transmission
+)
+
+# Install apps to /Applications
+# Default is: /Users/$user/Applications
+echo "installing apps..."
+sudo brew cask install --appdir="/Applications" ${apps[@]}
