@@ -48,7 +48,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn brew jsontools screen zsh_reload kiji)
+plugins=(git mvn brew jsontools screen zsh_reload vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,16 +76,9 @@ alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dchecksty
 alias mvn='~/bin/mvn'
 alias sd='screen -dRUS dev' 
 
-# Kiji Development Configuration
-
 # Keep Maven from running out of memory when building Kiji.
 export MAVEN_OPTS="-XX:MaxPermSize=1024m -Xmx1024m"
 
 # Remove "Unable to load realm info from SCDynamicStore” error messages when building Kiji.
 export HADOOP_OPTS="-Djava.security.krb5.realm= -Djava.security.krb5.kdc="
 
-# Run Kiji Bento in headless mode
-export BENTO_JAVA_OPTS="${BENTO_JAVA_OPTS} -Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx3g -Xms3g"
-
-# Include Kiji developer tools on the path.
-export PATH=$PATH:~/github/devtools/bin/
