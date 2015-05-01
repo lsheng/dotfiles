@@ -48,7 +48,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn brew jsontools screen zsh_reload vagrant)
+plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv pythoni coffee mercurial)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -75,6 +75,7 @@ bindkey '^b' backward-word
 alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
 alias mvn='~/bin/mvn'
 alias sd='screen -dRUS dev' 
+alias sx='screen -xUS dev'
 
 # Keep Maven from running out of memory when building Kiji.
 export MAVEN_OPTS="-XX:MaxPermSize=1024m -Xmx1024m"

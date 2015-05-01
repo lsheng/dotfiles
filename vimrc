@@ -24,7 +24,7 @@ set showmatch
 set incsearch
 set ignorecase
 set autoindent
-set history=1000
+set history=8192
 set cursorline
 set laststatus=2
 

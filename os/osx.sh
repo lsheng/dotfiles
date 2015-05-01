@@ -62,7 +62,7 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 echo ""
 echo "Saving to disk (not to iCloud) by default"
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+#defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 echo ""
 echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
@@ -279,11 +279,10 @@ brew cleanup
 
 brew install caskroom/cask/brew-cask
 apps=(
-  dropbox
+#  dropbox
   google-chrome
   iterm2
   vlc
-#  transmission
 )
 
 # Install apps to /Applications
