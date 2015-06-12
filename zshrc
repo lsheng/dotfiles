@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -48,11 +48,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv pythoni coffee mercurial)
+plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv python coffee mercurial)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+PATH=${PATH}:~/bin/
 
 # Tab complete known hosts
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -83,3 +85,7 @@ export MAVEN_OPTS="-XX:MaxPermSize=1024m -Xmx1024m"
 # Remove "Unable to load realm info from SCDynamicStore” error messages when building Kiji.
 export HADOOP_OPTS="-Djava.security.krb5.realm= -Djava.security.krb5.kdc="
 
+# Source my local zshrc stuff
+if [[ -e ~/.zshrc_local ]]; then
+  source ~/.zshrc_local
+fi
