@@ -48,13 +48,15 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv python coffee mercurial)
+plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv python coffee)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 PATH=${PATH}:~/bin/
+
+EDITOR=vim
 
 # Tab complete known hosts
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -74,8 +76,8 @@ bindkey '^w' forward-word
 bindkey '^b' backward-word
 
 # Command aliases
-alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
-alias mvn='~/bin/mvn'
+#alias mcs='mvn checkstyle:checkstyle -Dcheckstyle.output.format=plain -Dcheckstyle.output.file=$\{project.build.directory\}/checkstyle-result.txt -Dcheckstyle.failsOnError=true; cat `find . -name checkstyle-result.txt` | sed -e "s/.*kiji-.*\///g"'
+#alias mvn='~/bin/mvn'
 alias sd='screen -dRUS dev' 
 alias sx='screen -xUS dev'
 
