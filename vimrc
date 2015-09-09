@@ -38,7 +38,7 @@ Plugin 'scrooloose/syntastic'
 " ctrlp - Full path fuzzy file finder
 Plugin 'kien/ctrlp.vim'
 
-" Ag plugin 
+" Ag plugin
 Plugin 'rking/ag.vim'
 
 " Coffeescript
@@ -47,6 +47,9 @@ Plugin 'kchmck/vim-coffee-script'
 " Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+" Airline
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,9 +66,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
- 
-syntax enable 
+" set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+syntax enable
 set number
 set mouse=a             " hold shift to copy xterm
 set ttymouse=xterm2     " necessary for gnu screen & mouse
@@ -121,7 +123,7 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-" Syntastic 
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -136,3 +138,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " vim_markdown: Don't fold markdown by default
 let g:vim_markdown_folding_disabled=1
+
+" Airline theme
+let &t_Co=256
+let g:airline_theme='solarized'
+
+let g:pymode_indent = 0
