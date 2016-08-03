@@ -1,3 +1,5 @@
+export DEFAULT_USER=`whoami`
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -48,7 +50,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mvn brew jsontools screen zsh_reload vagrant npm pip pyenv python coffee)
+plugins=(git mvn brew jsontools screen zsh_reload pip pyenv python)
 
 source $ZSH/oh-my-zsh.sh
 
