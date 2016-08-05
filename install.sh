@@ -40,15 +40,15 @@ if [ ! -f ~/.zshrc ]; then
   ln -s ${PWD}/zshrc ~/.zshrc
 fi
 
-if [ ! -f ~/.vimrc ]; then
-  echo Symlinking .vimrc
-  ln -s ${PWD}/vimrc ~/.vimrc
-fi
+#if [ ! -f ~/.vimrc ]; then
+#  echo Symlinking .vimrc
+#  ln -s ${PWD}/vimrc ~/.vimrc
+#fi
 
-if [ ! -d ~/.vim ]; then
-  echo Symlinking .vim/
-  ln -s ${PWD}/vim ~/.vim
-fi
+#if [ ! -d ~/.vim ]; then
+#  echo Symlinking .vim/
+#  ln -s ${PWD}/vim ~/.vim
+#fi
 
 if [[ $OSTYPE == linux-gnu* ]] ; then
   # Linux special steps
